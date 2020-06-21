@@ -241,9 +241,17 @@ let customers = [
     }
   ];
 // Map/Map returning an arry of smaller arrays
-  const emails = customers.map(customer => {
-      return customer.contacts.email.map(custEmail => {
-        return custEmail}
-        )
-  })
-  console.log(emails)
+//   const emails = customers.map(customer => {
+//       return customer.contacts.email.map(custEmail => {
+//         return custEmail}
+//         )
+//   })
+
+// Map/valueOf returning an arry of smaller arrays
+const emails = customers.map(customer => {
+    return customer.contacts.email.valueOf() 
+})
+
+
+
+console.log(emails)
