@@ -248,10 +248,25 @@ let customers = [
 //   })
 
 // Map/valueOf returning an arry of smaller arrays
-const emails = customers.map(customer => {
-    return customer.contacts.email.valueOf() 
-})
+// const emails = customers.map(customer => {
+//     return customer.contacts.email.valueOf() 
+// })
 
 
+// console.log(emails)
 
-console.log(emails)
+//Challenges//
+
+const integers = [13, 25, 6, 3, 11, 2, 18, 7, 21, 1, 29, 20, 12, 8];
+
+const sortedIntegers = integers.sort((a, b) => {return b-a})
+console.log(sortedIntegers)
+
+const filteredIntegers = integers.filter(integer => (integer <= 19) ? true:false).sort((a, b) => {return b-a})
+console.log(filteredIntegers)
+
+const processedIntegers = integers.filter(integer => (integer <= 19) ? true:false).sort((a, b) => {return b-a}).map(integer => {return (integer * 1.5) -1 })
+console.log(processedIntegers)
+
+const summedIntegers = integers.filter(integer => (integer <= 19) ? true:false).sort((a, b) => {return b-a}).map(integer => {return (integer * 1.5) -1 }).reduce((current, next) => current += next,0)
+console.log(summedIntegers)
