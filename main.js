@@ -1,3 +1,5 @@
+import salesData from "./data.js"
+
 let customers = [
     {
       "location": {
@@ -270,3 +272,72 @@ console.log(processedIntegers)
 
 const summedIntegers = integers.filter(integer => (integer <= 19) ? true:false).sort((a, b) => {return b-a}).map(integer => {return (integer * 1.5) -1 }).reduce((current, next) => current += next,0)
 console.log(summedIntegers)
+
+/*
+{
+        "vehicle": {
+            "year": 2013,
+            "model": "Tanex",
+            "make": "Tamp-dax",
+            "color": "quartz"
+        },
+        "sales_id": "782a23fd-8b83-4497-b9a1-41fd9b15648e",
+        "sales_agent": {
+            "mobile": "1-584-162-7444",
+            "last_name": "Larkin",
+            "first_name": "Tiara",
+            "email": "ready@gmail.com"
+        },
+        "purchase_date": "2017-06-07",
+        "gross_profit": 210,
+        "credit": {
+            "credit_provider": "United Services Automobile Assoc.",
+            "account": "491697193540559"
+        }
+    }
+
+*/
+// console.log(salesData[0].purchase_date.slice(0,4))
+const sales2017 = salesData.filter(year2017 => {
+    // console.log(year2017.purchase_date.slice(0,4))
+    return (year2017.purchase_date.slice(0,4) === "2017") ? true:false
+})
+
+// console.log(sales2017)
+
+const profit2017 = sales2017.map(sale => {return sale.gross_profit}).reduce((current, next) => current += next,0).toFixed(2)
+console.log(`Total profits in 2017 were $${profit2017}`)
+
+
+const salesByMonth = sales2017.map(sale => {return sale.purchase_date.slice(5,7)})
+let count = (sales, classifier) => {
+    return sales.reduce(function(counter, item) {
+        var p = (classifier || String)(item);
+        counter[p] = counter.hasOwnProperty(p) ? counter[p] + 1 : 1;
+        return counter;
+    }, {})
+}
+
+
+
+const monthCount = count(salesByMonth)
+const monthCountArray = Object.entries(monthCount).sort((a,b) => b[1]-a[1])
+// const monthlyObject = (salesArray) => {
+//     let saleObject =  {
+//         month: salesArray[0],
+//         sales: salesArray[1]
+//     }
+//     return saleObject
+// }
+// const monthlyObjectArray = []
+
+// const monthlyObjectMaker = monthCountArray.forEach(salesArray => {
+//    monthlyObjectArray.push(monthlyObject(salesArray))
+//     }
+// )
+
+
+// const sortedMonths = monthlyObjectArray.sort((a, b) => {return b-a})
+// console.log(salesByMonth)
+// console.log(monthCountArray)  
+console.log(`We sold the most cars in the ${monthCountArray[0][0]}th month. A total of ${monthCountArray[0][1]} cars were sold that month.`) 
